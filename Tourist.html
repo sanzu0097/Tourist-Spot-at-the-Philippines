@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pilipinas: 7,641 Islands, One Trip</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sea:#06476a; --deep:#032b44; --mango:#ffb703; --coral:#ff6b4a; --sand:#fff8ea; --ink:#0d2233; --card:#ffffff; --muted:#4a6275;
+  --bg:#f3fbfd; --text:#0d2233; --line:#cfe5ec;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#04202f;--text:#eaf6fa;--card:#0b3349;--muted:#a9c4d1;--line:#164a63;--sand:#0b3349}
+}
+:root[data-theme="dark"]{--bg:#04202f;--text:#eaf6fa;--card:#0b3349;--muted:#a9c4d1;--line:#164a63;--sand:#0b3349}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",Georgia,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mango);outline-offset:3px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;padding:.8rem 1rem;background:rgba(3,43,68,.92);backdrop-filter:blur(8px)}
+nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;padding:.2rem .1rem;border-bottom:3px solid transparent;transition:border-color .2s}
+nav a:hover{border-color:var(--mango)}
+
+/* hero */
+.hero{position:relative;min-height:88vh;overflow:hidden;color:#fff;display:grid;place-items:center;text-align:center;padding:4rem 1.2rem 9rem;
+  background:linear-gradient(#1b3a73 0%,#c0456b 45%,#ff9d57 75%,#ffd27a 100%)}
+.sun{position:absolute;left:50%;bottom:22%;width:min(38vw,230px);aspect-ratio:1;border-radius:50%;transform:translateX(-50%);
+  background:radial-gradient(circle,#fff3b0,#ffb703 70%);box-shadow:0 0 90px 40px rgba(255,183,3,.45);animation:rise 3.5s ease-out both}
+@keyframes rise{from{transform:translate(-50%,120%)}to{transform:translate(-50%,0)}}
+.hero div.txt{position:relative;z-index:3;max-width:760px}
+.hero h1{font-size:clamp(2.6rem,9vw,5.6rem);font-weight:800;letter-spacing:-.02em;text-shadow:0 3px 24px rgba(3,20,40,.45)}
+.hero p{font-size:1.2rem;margin:1rem auto 1.6rem;max-width:34em;text-shadow:0 1px 12px rgba(3,20,40,.5)}
+.btn{display:inline-block;background:var(--mango);color:#1b1200;font-weight:700;padding:.85rem 1.6rem;border-radius:999px;text-decoration:none;box-shadow:0 6px 0 #b27f00;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(3px);box-shadow:0 3px 0 #b27f00}
+.btn:active{transform:translateY(6px);box-shadow:0 0 0 #b27f00}
+.waves{position:absolute;left:0;right:0;bottom:0;height:34%;z-index:2}
+.waves i{position:absolute;left:-10%;right:-10%;bottom:0;border-radius:50% 50% 0 0/100% 100% 0 0;animation:sway 7s ease-in-out infinite alternate}
+.waves i:nth-child(1){height:100%;background:#0a6c8f;opacity:.85}
+.waves i:nth-child(2){height:78%;background:#06546f;animation-delay:-2s;animation-duration:9s}
+.waves i:nth-child(3){height:55%;background:var(--deep);animation-delay:-4s}
+@keyframes sway{to{transform:translateX(4%)}}
+
+section{padding:4.5rem 1.2rem;max-width:1050px;margin:0 auto}
+section>h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:.5rem}
+.lead{color:var(--muted);max-width:40em;margin:0 0 2rem}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin-top:2rem}
+.stats div{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:1.2rem}
+.stats b{display:block;font:800 2.2rem "Bricolage Grotesque",sans-serif;color:var(--coral)}
+
+/* destination explorer (radio tabs) */
+.explorer>input{position:absolute;opacity:0;pointer-events:none}
+.tabs{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.2rem}
+.tabs label{cursor:pointer;padding:.55rem 1.1rem;border-radius:999px;border:2px solid var(--line);background:var(--card);font-weight:700;transition:transform .15s,background .2s}
+.tabs label:hover{transform:translateY(-3px)}
+#d1:checked~.tabs [for=d1],#d2:checked~.tabs [for=d2],#d3:checked~.tabs [for=d3],#d4:checked~.tabs [for=d4],#d5:checked~.tabs [for=d5]{background:var(--mango);border-color:var(--mango);color:#1b1200}
+#d1:focus-visible~.tabs [for=d1],#d2:focus-visible~.tabs [for=d2],#d3:focus-visible~.tabs [for=d3],#d4:focus-visible~.tabs [for=d4],#d5:focus-visible~.tabs [for=d5]{outline:3px solid var(--coral);outline-offset:3px}
+.panel{display:none;border-radius:28px;overflow:hidden;color:#fff;background:linear-gradient(135deg,var(--a),var(--b))}
+#d1:checked~.panels #p1,#d2:checked~.panels #p2,#d3:checked~.panels #p3,#d4:checked~.panels #p4,#d5:checked~.panels #p5{display:grid;grid-template-columns:1fr 1.3fr;animation:pop .45s ease-out}
+@keyframes pop{from{opacity:0;transform:scale(.97)}}
+.panel .big{display:grid;place-items:center;font-size:clamp(6rem,18vw,10rem);background:rgba(0,0,0,.14);padding:1.5rem}
+.panel .info{padding:2rem}
+.panel h3{font-size:2.2rem}
+.panel .tag{margin:.3rem 0 1rem;font-size:1.1rem;opacity:.95}
+.panel ul{margin:0 0 1rem;padding-left:1.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chips span{background:rgba(255,255,255,.2);border-radius:999px;padding:.2rem .8rem;font-size:.9rem;font-weight:600}
+@media(max-width:700px){.panel{grid-template-columns:1fr!important}.panel .big{padding:1rem}}
+
+/* flip cards */
+.foods{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
+.flip{perspective:900px;height:240px;cursor:pointer}
+.flip>div{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip:hover>div,.flip:focus>div{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;display:grid;place-items:center;text-align:center;padding:1.2rem}
+.flip .f{background:var(--card);border:2px solid var(--line);font:800 1.4rem "Bricolage Grotesque",sans-serif}
+.flip .f em{display:block;font-size:4rem;font-style:normal}
+.flip .b{background:var(--coral);color:#fff;transform:rotateY(180deg);font-size:1rem}
+.hint{color:var(--muted);font-size:.9rem;margin-top:1rem}
+
+/* accordion + checklist */
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+details{background:var(--card);border:2px solid var(--line);border-radius:16px;margin-bottom:.7rem;overflow:hidden}
+summary{cursor:pointer;padding:1rem 1.2rem;font-weight:700;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";font-size:1.4rem;line-height:1;transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0;padding:0 1.2rem 1.1rem;color:var(--muted)}
+.pack{background:var(--sand);border-radius:22px;padding:1.5rem;border:2px dashed var(--mango)}
+.pack h3{margin-bottom:.8rem}
+.pack label{display:flex;gap:.7rem;align-items:center;padding:.4rem 0;cursor:pointer}
+.pack input{width:1.3rem;height:1.3rem;accent-color:var(--coral)}
+.pack input:checked+span{text-decoration:line-through;opacity:.5}
+
+/* greetings */
+.hello{background:var(--deep);color:#fff;text-align:center;max-width:none}
+.hello h2{max-width:700px;margin:0 auto 1rem}
+.hello p{max-width:36em;margin:0 auto 1.6rem;opacity:.9}
+footer{background:#021c2d;color:#9fc0cf;text-align:center;padding:1.5rem;font-size:.9rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* images */
+.panel .big{padding:0;overflow:hidden}
+.panel .big img{width:100%;height:100%;object-fit:cover;display:block}
+.flip .f img{display:block;width:100%;height:130px;object-fit:cover;border-radius:14px;margin-bottom:.6rem}
+@media(max-width:700px){.panel .big{min-height:200px;padding:0}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top">Home</a><a href="#explore">Destinations</a><a href="#food">Food</a><a href="#plan">Plan</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="sun"></div>
+  <div class="txt">
+    <h1>Mabuhay! Welcome to the Philippines Ma'am Alonzo!</h1>
+    <h4>Made by team palubog!</h4>
+    <p> Labausa, Jhunie C.</p>
+    <p>Duquisa, Loraiine R.</p>
+    <p>Rianias, Ronnel O. Jr.</p>
+    <p>Latorre, Mark John B.</p>
+    <p>Endaya, Arvin Mikel L.</p>
+    <p>Seven thousand islands, warm people, and sunsets that make you miss your flight. Pick an island and start planning.</p>
+    <a class="btn" href="#explore">Explore the islands</a>
+  </div>
+  <div class="waves"><i></i><i></i><i></i></div>
+</header>
+
+<section>
+  <h2>Why travel here?</h2>
+  <p class="lead">From white-sand beaches to rice terraces carved by hand 2,000 years ago, the Philippines packs a whole continent’s worth of adventure into one country.</p>
+  <div class="stats">
+    <div><b>7,641</b>islands to choose from</div>
+    <div><b>36,000 km</b>of coastline</div>
+    <div><b>170+</b>languages spoken</div>
+    <div><b>Year-round</b>warm weather</div>
+  </div>
+</section>
+
+<section id="explore" class="explorer">
+  <h2>Pick your destination</h2>
+  <p class="lead">Tap a place to see what it’s known for and when to go.</p>
+  <input type="radio" name="d" id="d1" checked>
+  <input type="radio" name="d" id="d2">
+  <input type="radio" name="d" id="d3">
+  <input type="radio" name="d" id="d4">
+  <input type="radio" name="d" id="d5">
+  <div class="tabs">
+    <label for="d1"> Palawan</label>
+    <label for="d2"> Cebu</label>
+    <label for="d3"> Siargao</label>
+    <label for="d4"> Banaue</label>
+    <label for="d5"> Bohol</label>
+  </div>
+  <div class="panels">
+    <article class="panel" id="p1" style="--a:#0aa5a8;--b:#06476a">
+      <div class="big"><img src="Palawan.jpg" alt="Limestone cliffs and turquoise lagoon in El Nido, Palawan" loading="lazy"></div>
+      <div class="info"><h3>Palawan</h3><p class="tag">El Nido and Coron: lagoons, limestone cliffs, shipwreck dives.</p>
+        <ul><li>Island-hop through the Bacuit Bay lagoons</li><li>Dive Japanese wrecks in Coron</li><li>Float through the Puerto Princesa Underground River</li></ul>
+        <div class="chips"><span>Best: Nov–May</span><span>Beach</span><span>Diving</span></div></div>
+    </article>
+    <article class="panel" id="p2" style="--a:#ff8a3d;--b:#b3265e">
+      <div class="big"><img src="Cebu ya.jpg" alt="Traditional bangka boat with tourists off a white-sand beach in Cebu" loading="lazy"></div>
+      <div class="info"><h3>Cebu</h3><p class="tag">Waterfalls, whale sharks, and the oldest city in the country.</p>
+        <ul><li>Swim with whale sharks in Oslob</li><li>Jump into Kawasan Falls’ turquoise pools</li><li>Walk through Magellan’s Cross and Basilica del Santo Niño</li></ul>
+        <div class="chips"><span>Best: Jan–May</span><span>Canyoneering</span><span>History</span></div></div>
+    </article>
+    <article class="panel" id="p3" style="--a:#2ec4b6;--b:#1b4f72">
+      <div class="big"><img src="siargao.jpg" alt="Aerial view of a palm-covered sandbar island with boats in Siargao" loading="lazy"></div>
+      <div class="info"><h3>Siargao</h3><p class="tag">The surfing capital, with palm-lined roads and slow island days.</p>
+        <ul><li>Catch a wave at Cloud 9</li><li>Swim in Sugba Lagoon</li><li>Ride a scooter past Magpupungko tidal pools</li></ul>
+        <div class="chips"><span>Best: Sep–Nov</span><span>Surf</span><span>Chill</span></div></div>
+    </article>
+    <article class="panel" id="p4" style="--a:#6aa84f;--b:#27522f">
+      <div class="big"><img src="banaue.jpeg" alt="Green rice terraces on a mountainside with farmers walking" loading="lazy"></div>
+      <div class="info"><h3>Banaue</h3><p class="tag">The Ifugao rice terraces, a UNESCO World Heritage Site above the clouds.</p>
+        <ul><li>Trek from Batad village to Tappiya Falls</li><li>Watch the sunrise over the terraces</li><li>Meet the Ifugao and see their weaving</li></ul>
+        <div class="chips"><span>Best: Mar–Jun</span><span>Trekking</span><span>Culture</span></div></div>
+    </article>
+    <article class="panel" id="p5" style="--a:#9c6b30;--b:#3d5a1f">
+      <div class="big"><img src="bohol.jpg" alt="Aerial view of a round green island ringed by white sand and turquoise water in Bohol" loading="lazy"></div>
+      <div class="info"><h3>Bohol</h3><p class="tag">Chocolate Hills, tiny tarsiers, and quiet river cruises.</p>
+        <ul><li>See the 1,200+ Chocolate Hills turn brown in the dry season</li><li>Meet a tarsier at the sanctuary in Corella</li><li>Dive off Balicasag and Panglao</li></ul>
+        <div class="chips"><span>Best: Dec–May</span><span>Wildlife</span><span>Nature</span></div></div>
+    </article>
+  </div>
+</section>
+
+<section id="food">
+  <h2>Eat your way around</h2>
+  <p class="lead">Filipino food is salty, sour, sweet, and made for sharing.</p>
+  <div class="foods">
+        <div class="flip" tabindex="0"><div><div class="f"><span><img src="adobo.jpg" alt="Chicken adobo"> Adobo</span></div><div class="b">Chicken or pork simmered in vinegar, soy sauce, garlic, and bay leaf. Often called the unofficial national dish.</div></div></div>
+    <div class="flip" tabindex="0"><div><div class="f"><span><img src="halo-halo.jpg" alt="Halo-halo dessert"> Halo-halo</span></div><div class="b">“Mix-mix” of shaved ice, evaporated milk, sweet beans, jelly, and ube ice cream. Best on a hot afternoon.</div></div></div>
+    <div class="flip" tabindex="0"><div><div class="f"><span><img src="lechon.jpg" alt="Roast lechon"> Lechon</span></div><div class="b">Whole pig roasted over coals until the skin crackles. Cebu’s version is famous for being tasty without sauce.</div></div></div>
+    <div class="flip" tabindex="0"><div><div class="f"><span><img src="Mango.jpg" alt="Ripe Philippine mangoes"> Mango</span></div><div class="b">Sweet Philippine mangoes are among the best in the world. Try them fresh, dried, or in a shake.</div></div></div>
+  </div>
+  <p class="hint">Hover over a card, or focus it with Tab, to flip it.</p>
+</section>
+
+<section id="plan">
+  <h2>Plan your trip</h2>
+  <p class="lead">Quick answers, plus a packing list you can tick off.</p>
+  <div class="two">
+    <div>
+      <details open><summary>When is the best time to visit?</summary><p>November to May is the dry season. March to May is hottest and best for beaches. June to October brings rain and typhoons, but fewer crowds and lower prices.</p></details>
+      <details><summary>How do I get between islands?</summary><p>Fly with budget airlines for long hops, and take ferries or bangkas (outrigger boats) for short ones. Book ferries early in peak season.</p></details>
+      <details><summary>How much money do I need per day?</summary><p>Backpackers can manage on about ₱2,000 a day. Mid-range travelers should plan for ₱4,000–₱6,000, including hotels, meals, and tours.</p></details>
+      <details><summary>Is it safe to travel?</summary><p>Most tourist areas are welcoming and easy to visit. Watch your belongings in crowds, check the weather before boat trips, and follow local advisories.</p></details>
+      <details><summary>What should I say to locals?</summary><p>“Salamat” means thank you, “magandang umaga” is good morning, and “po” adds respect. A smile goes further than any phrase.</p></details>
+    </div>
+    <aside class="pack">
+      <h3> Packing checklist</h3>
+      <label><input type="checkbox"><span>Passport and travel insurance</span></label>
+      <label><input type="checkbox"><span>Reef-safe sunscreen</span></label>
+      <label><input type="checkbox"><span>Light rain jacket</span></label>
+      <label><input type="checkbox"><span>Water shoes for rocky shores</span></label>
+      <label><input type="checkbox"><span>Dry bag for island hopping</span></label>
+      <label><input type="checkbox"><span>Cash in pesos for small towns</span></label>
+    </aside>
+  </div>
+</section>
+
+<section class="hello">
+  <h2>It’s more fun in the Philippines</h2>
+  <p>Pack light, bring an appetite, and leave room for the unplanned detour. That’s usually the best part.</p>
+  <a class="btn" href="#explore">Choose your first island</a>
+</section>
+
+<footer>Made by team palubog · Salamat for visiting ma'am Alonzo!</footer>
+<footer>Labausa, Jhunie C.
+        Duquisa, Loraine R.
+        Rianias, Ronnel O. Jr.
+        La Torre, Mark John B.
+        Endaya, Arvin Mikel L.
+</footer>
+</body>
+</html>
